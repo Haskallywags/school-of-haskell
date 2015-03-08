@@ -1,18 +1,18 @@
 # School of Haskell
 
-A guided tour through [BiteMyApp][1]'s comprehensive [Haskell tutorial][2].
+A guided tour through [BiteMyApp][]'s comprehensive [Haskell tutorial][].
 
-  [1]: https://github.com/bitemyapp
-  [2]: https://github.com/bitemyapp/learnhaskell
+  []: https://github.com/bitemyapp
+  []: https://github.com/bitemyapp/learnhaskell
 
 ## Installing Haskell
 
 For those just getting started, follow these steps to install the latest
 version of **GHC**. For those using OSX, the recommend package manager is
-[Homebrew][3]. For those using other OS's, replace `brew install` with your own
+[Homebrew][]. For those using other OS's, replace `brew install` with your own
 package manager in any following shell commands (lines prefixed by a `$`).
 
-  [3]: http://brew.sh/
+  []: http://brew.sh/
 
 1. Install GHC (the Haskell compiler) and Cabal (the Haskell package manager)
 
@@ -37,11 +37,11 @@ other text editors.
     $ cabal install happy
     $ cabal install ghc-mod
 
-2. Install the [GHC-mod plugin for Vim][4]. If you are inexperienced with
-   installing Vim plugins, I recommend using [Vundle][5].
+2. Install the [GHC-mod plugin for Vim][]. If you are inexperienced with
+   installing Vim plugins, I recommend using [Vundle][].
 
-  [4]: https://github.com/eagletmt/ghcmod-vim
-  [5]: https://github.com/gmarik/Vundle.vim
+  []: https://github.com/eagletmt/ghcmod-vim
+  []: https://github.com/gmarik/Vundle.vim
 
 3. (Optional) Add shortcut keys for the GHC-mod commands. Mine are listed
    below, which can be listed in your `$HOME/.vimrc` file.
@@ -67,7 +67,7 @@ Before beginning a homework, you should:
 2. Initialize a Cabal sandbox in the current homework directory and install
    any required packages. For example:
 
-    $ cd cis194/homework_1
+    $ cd cis194/homework-1
     $ cabal sandbox init
     $ cabal install --only-dependencies --enable-tests
     $ cabal configure --enable-tests
@@ -79,3 +79,21 @@ Before beginning a homework, you should:
 You're now ready to begin replacing the `undefined` functions with actual
 function definitions. Running and passing the specs as you write functions
 will ensure that your later work is built upon previous correct work.
+
+## Discovering functions
+
+Haskell doesn't come packaged with a standard library as do many other
+languages. Instead, it has the [Haskell Platform][]—a collection of curated
+packages deemed most useful and of high quality. While it's **not
+recommended** that you install the platform _per se_, I do recommend that you
+consult the [Haskell Platform documentation][] as your first place to
+discover new libraries and functions and install the libraries as needed.
+
+  []: https://www.haskell.org/platform/
+  []: http://lambda.haskell.org/platform/doc/current/frames.html
+
+Another great way to discover functions is via [Hoogle][], the Haskell
+function search engine. With Hoogle, functions may be discovered by name _or_
+type signature.
+
+  []: http://www.haskell.org/hoogle/
