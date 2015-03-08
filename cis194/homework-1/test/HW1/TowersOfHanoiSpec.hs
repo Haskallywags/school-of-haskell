@@ -1,4 +1,4 @@
-module TowersOfHanoiSpec (main, spec) where
+module HW1.TowersOfHanoiSpec (main, spec) where
 
 import HW1.TowersOfHanoi
 import Test.Hspec
