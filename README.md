@@ -51,4 +51,31 @@ other text editors.
     au FileType haskell nnoremap <buffer> <Leader>hc :GhcModCheck<CR>
     au FileType haskell nnoremap <buffer> <Leader>hl :GhcModLint<CR>
 
-## TODO: Initializing a new Haskell project
+**NOTE:** If you've installed GHC via a package manager, you're probably using
+version 7.8.4 or less (which you can check via `$ ghc --version`. If so, you
+_must_ use Cabal version 1.20.0.6 or less for ghc-mod to function properly.
+You may force the Cabal version via `$ cabal install cabal-install-1.20.0.6`.
+
+## Beginning a homework assignment
+
+Before beginning a homework, you should:
+
+1. Branch this project
+
+    $ git branch [an appropriate branch name for the homework]
+
+2. Initialize a Cabal sandbox in the current homework directory and install
+   any required packages. For example:
+
+    $ cd cis194/homework_1
+    $ cabal sandbox init
+    $ cabal install --only-dependencies --enable-tests
+    $ cabal configure --enable-tests
+
+3. Run the specs to ensure they fail
+
+    $ cabal test --show-details=always --test-options="--color"
+
+You're now ready to begin replacing the `undefined` functions with actual
+function definitions. Running and passing the specs as you write functions
+will ensure that your later work is built upon previous correct work.
