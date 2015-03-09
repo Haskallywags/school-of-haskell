@@ -1,0 +1,26 @@
+name:                  homework2
+version:               0.1.0.0
+synopsis:              homework 2 specs
+homepage:              https://github.com/Haskallywags/school-of-haskell
+license:               MIT
+author:                Jon Childress
+maintainer:            jon@childr.es
+build-type:            Simple
+cabal-version:         >=1.10
+
+library
+  hs-source-dirs:      src
+  exposed-modules:     HW2.LogAnalysis
+  default-language:    Haskell2010
+  build-depends:       base >=4.7 && <4.8,
+                       parsec == 3.1.*
+
+test-suite             spec
+  hs-source-dirs:      src, test
+  main-is:             Spec.hs
+  type:                exitcode-stdio-1.0
+  default-language:    Haskell2010
+  build-depends:       base >=4.7 && <4.8,
+                       hspec == 2.1.*,
+                       QuickCheck == 2.7.*,
+                       parsec == 3.1.*
