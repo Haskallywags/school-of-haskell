@@ -3,9 +3,11 @@ module HW5.CalcTest
 , testBool
 , testMM
 , testSat
+, testProgram
 ) where
 
 import Provided.Parser (parseExp)
+import Provided.StackVM (Program)
 
 import HW5.Calc
 
@@ -20,6 +22,9 @@ testMM = testExp
 
 testSat :: Maybe Mod7
 testSat = testExp
+
+testProgram :: Maybe Program
+testProgram = testExp
 
 -- private functions
 
