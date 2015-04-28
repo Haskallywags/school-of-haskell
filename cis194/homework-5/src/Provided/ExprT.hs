@@ -1,4 +1,4 @@
-module ExprT where
+module Provided.ExprT where
 
 data ExprT
   = Lit Integer

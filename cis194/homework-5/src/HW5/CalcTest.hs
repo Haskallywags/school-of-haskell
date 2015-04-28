@@ -5,8 +5,9 @@ module HW5.CalcTest
 , testSat
 ) where
 
-import HW5.Calc (Expr, lit, add, mut)
 import Provided.Parser (parseExp)
+
+import HW5.Calc
 
 testInteger :: Maybe Integer
 testInteger = testExp
