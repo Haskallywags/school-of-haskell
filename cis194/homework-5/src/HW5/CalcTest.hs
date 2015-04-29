@@ -4,10 +4,13 @@ module HW5.CalcTest
 , testMM
 , testSat
 , testProgram
+, withVars
 ) where
 
 import Provided.Parser (parseExp)
 import Provided.StackVM (Program)
+
+import qualified Data.Map as Map
 
 import HW5.Calc
 
@@ -25,6 +28,11 @@ testSat = testExp
 
 testProgram :: Maybe Program
 testProgram = testExp
+
+withVars :: [(String, Integer)]
+         -> (Map.Map String Integer -> Maybe Integer)
+         -> Maybe Integer
+withVars dict expression = expression $ Map.fromList dict
 
 -- private functions
 

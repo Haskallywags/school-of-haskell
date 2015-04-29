@@ -12,7 +12,8 @@ library
   hs-source-dirs:      src
   exposed-modules:     HW5.Calc, HW5.CalcTest
   default-language:    Haskell2010
-  build-depends:       base == 4.*
+  build-depends:       base == 4.*,
+                       containers == 0.5.*
 
 test-suite             spec
   hs-source-dirs:      src, test
@@ -20,5 +21,6 @@ test-suite             spec
   type:                exitcode-stdio-1.0
   default-language:    Haskell2010
   build-depends:       base == 4.*,
+                       containers == 0.5.*,
                        hspec == 2.*,
                        QuickCheck == 2.*
