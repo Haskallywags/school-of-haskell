@@ -1,11 +1,20 @@
 {-# LANGUAGE FlexibleInstances #-}
 
 module HW5.Calc
-( Expr (..)
+( -- exercise 1
+  eval
+  -- exercise 2
+, evalStr
+  -- exercise 3
+, Expr (..)
+  -- exercise 4
 , MinMax (..)
 , Mod7 (..)
-, eval
-, evalStr
+  -- exercise 5 (optional)
+, compile
+  -- exercise 6 (optional)
+, HasVars (var)
+, VarExprT (..)
 ) where
 
 import Provided.Parser (parseExp)
@@ -60,10 +69,10 @@ instance Expr MinMax where
 
 instance Expr Mod7 where
   lit = Mod7
-  add (Mod7 x) (Mod7 y) = Mod7 . mod 7 $ x + y
-  mul (Mod7 x) (Mod7 y) = Mod7 . mod 7 $ x * y
+  add (Mod7 x) (Mod7 y) = Mod7 $ mod (x + y) 7
+  mul (Mod7 x) (Mod7 y) = Mod7 $ mod (x * y) 7
 
--- exercise 5
+-- exercise 5 (optional)
 
 instance Expr StackVM.Program where
   lit n = [StackVM.PushI n]
@@ -73,7 +82,7 @@ instance Expr StackVM.Program where
 compile :: String -> Maybe StackVM.Program
 compile = parseExp lit add mul
 
--- exercise 6
+-- exercise 6 (optional)
 
 data (Eq a, Show a) => VarExprT a
   = Lit Integer
@@ -97,6 +106,6 @@ instance HasVars (Map.Map String Integer -> Maybe Integer) where
   var = Map.lookup
 
 instance Expr (Map.Map String Integer -> Maybe Integer) where
-  lit n     = \_ -> Just n
-  add fx fy = \dict -> (+) <$> fx dict <*> fy dict
-  mul fx fy = \dict -> (*) <$> fx dict <*> fy dict
+  lit n _ = Just n
+  add fx fy dict = (+) <$> fx dict <*> fy dict
+  mul fx fy dict = (*) <$> fx dict <*> fy dict
