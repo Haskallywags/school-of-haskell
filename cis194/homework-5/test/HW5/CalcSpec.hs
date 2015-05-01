@@ -62,18 +62,22 @@ spec = do
       it "resolves a Mod7 from an Expr" $
         testSat `shouldBe` Just (HW5.Mod7 0)
 
-  describe "exercise 5 (optional)" $
-    describe "compile" $ do
-      let program =
-            [ StackVM.PushI 3
-            , StackVM.PushI (-4)
-            , StackVM.Mul
-            , StackVM.PushI 5
-            , StackVM.Add
-            ]
+  describe "exercise 5 (optional)" $ do
+    let program =
+          [ StackVM.PushI 3
+          , StackVM.PushI (-4)
+          , StackVM.Mul
+          , StackVM.PushI 5
+          , StackVM.Add
+          ]
 
-      it "resolves a freakin' program from an Expr holy crap" $
+    describe "Expr StackVM.Program" $ do
+      it "resolves a StackVM.Program from an Expr" $
         testProgram `shouldBe` Just program
+
+    describe "compile" $ do
+      it "resolves a freakin' program from an Expr holy crap" $
+        HW5.compile "(3 * -4) + 5" `shouldBe` Just program
 
   describe "exercise 6 (optional)" $
     describe "VarExprT" $ do
