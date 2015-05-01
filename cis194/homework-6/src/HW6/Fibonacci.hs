@@ -11,6 +11,9 @@ module HW6.Fibonacci
 , streamRepeat
 , streamMap
 , streamFromSeed
+  -- exercise 5
+, nats
+, ruler
 ) where
 
 -- exercise 1
@@ -39,15 +42,31 @@ instance Show a => Show (Stream a) where
       first20 = show . take 20 $ streamToList stream
 
 streamToList :: Stream a -> [a]
-streamToList (Cons a remaining) = a : streamToList remaining
+streamToList (Cons x xs) = x : streamToList xs
 
 -- exercise 4
 
 streamRepeat :: a -> Stream a
-streamRepeat x = undefined
+streamRepeat x = Cons x $ streamRepeat x
 
 streamMap :: (a -> b) -> Stream a -> Stream b
-streamMap f stream = undefined
+streamMap f (Cons x xs) = f x `Cons` streamMap f xs
 
 streamFromSeed :: (a -> a) -> a -> Stream a
-streamFromSeed f init = undefined
+streamFromSeed f x = x `Cons` streamFromSeed f (f x)
+
+-- exercise 5
+
+nats :: Stream Integer
+nats = streamFromSeed succ 0
+
+-- hinted at as helpful to implement `ruler`
+interleaveStreams :: Stream a -> Stream a -> Stream a
+interleaveStreams (Cons x xs) (Cons y ys) =
+    x `Cons` (y `Cons` interleaveStreams xs ys)
+
+ruler :: Stream Integer
+ruler = ruler' $ streamRepeat 0
+  where
+    ruler' (Cons x xs) =
+      x `Cons` interleaveStreams (ruler' . streamRepeat $ succ x) xs
