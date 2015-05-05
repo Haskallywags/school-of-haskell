@@ -35,6 +35,8 @@ fibs2 = 0 : 1 : zipWith (+) fibs2 (tail fibs2)
 
 data Stream a = Cons a (Stream a)
 
+infixr 5 `Cons`
+
 instance Show a => Show (Stream a) where
   show stream =
       first20 ++ " (only first 20 items of stream shown)"
@@ -63,7 +65,7 @@ nats = streamFromSeed succ 0
 -- hinted at as helpful to implement `ruler`
 interleaveStreams :: Stream a -> Stream a -> Stream a
 interleaveStreams (Cons x xs) (Cons y ys) =
-    x `Cons` (y `Cons` interleaveStreams xs ys)
+    x `Cons` y `Cons` interleaveStreams xs ys
 
 ruler :: Stream Integer
 ruler = ruler' $ streamRepeat 0
