@@ -78,8 +78,9 @@ spec = do
       property sameFuncs
 
   describe "myFoldl" $ do
-    let sameFuncs :: (Int, [Int]) -> Bool
-        sameFuncs (init, xs) = HW4.myFoldl (-) init xs == foldl (-) init xs
+    let sameFuncs :: [Int] -> Bool
+        sameFuncs xs = HW4.myFoldl append [] xs == foldl append [] xs
+        append acc x = acc ++ [x]
 
     it "behaves exactly as \"foldl\"" $
       property sameFuncs
