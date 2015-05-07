@@ -10,6 +10,9 @@ import Test.QuickCheck
 main :: IO ()
 main = hspec spec
 
+listFirst :: Int -> Stream a -> [a]
+listFirst n = take n . HW6.streamToList
+
 spec :: Spec
 spec = do
 
@@ -37,7 +40,7 @@ spec = do
     describe "streamToList" $
 
       it "turns a Stream into an infinite list" $
-        take 5 (HW6.streamToList stream123) `shouldBe` [1,2,3,1,2]
+        listFirst 5 stream123 `shouldBe` [1,2,3,1,2]
 
     describe "Stream Show" $
 
@@ -48,26 +51,26 @@ spec = do
     describe "streamRepeat" $
 
       it "makes a repeating Stream from a single element" $
-          take 5 (HW6.streamToList $ HW6.streamRepeat 'x') == take 5 (repeat 'x')
+        listFirst 5 (HW6.streamRepeat 'x') `shouldBe` take 5 (repeat 'x')
 
     describe "streamMap" $
 
       it "maps a function over a Stream" $
-        take 5 (HW6.streamToList $ HW6.streamMap succ stream123) `shouldBe` [2,3,4,2,3]
+        listFirst 5 (HW6.streamMap succ stream123) `shouldBe` [2,3,4,2,3]
 
     describe "streamFromSeed" $
 
       it "creates a Stream from a seed value and function" $
-        take 5 (HW6.streamToList $ HW6.streamFromSeed succ 1) `shouldBe` [1,2,3,4,5]
+        listFirst 5 (HW6.streamFromSeed succ 1) `shouldBe` [1,2,3,4,5]
 
   describe "exercise 5" $ do
     describe "nats" $
 
       it "generates a Stream of natural numbers starting from 0" $
-        take 5 (HW6.streamToList HW6.nats) `shouldBe` [0,1,2,3,4]
+        listFirst 5 HW6.nats `shouldBe` [0,1,2,3,4]
 
     describe "ruler" $ do
       let ruler16 = [0,1,0,2,0,1,0,3,0,1,0,2,0,1,0,4]
 
       it "generates the Stream of the sequence of the ruler function" $
-        take 16 (HW6.streamToList HW6.ruler) `shouldBe` ruler16
+        listFirst 16 HW6.ruler `shouldBe` ruler16

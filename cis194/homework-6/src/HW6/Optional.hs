@@ -1,7 +1,14 @@
 {-# OPTIONS_GHC -fno-warn-missing-methods #-}
 {-# LANGUAGE FlexibleInstances #-}
 
-module HW6.Optional where
+module HW6.Optional
+( -- exercise 6 (optional)
+  x
+, fibs3
+  -- exercise 7 (optional)
+, Matrix (..)
+, fib4
+) where
 
 import HW6.Fibonacci (Stream (..), nats, streamFromSeed, streamMap)
 
@@ -26,7 +33,9 @@ fibs3 = x / (1 - x - x * x)
 
 -- exercise 7 (optional)
 
-data Matrix = Matrix Integer Integer Integer Integer
+data Matrix
+  = Matrix Integer Integer Integer Integer
+  deriving (Eq, Show)
 
 instance Num Matrix where
   (Matrix a b c d) * (Matrix e f g h) =
